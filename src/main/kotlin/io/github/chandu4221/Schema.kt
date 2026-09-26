@@ -3,28 +3,54 @@ package io.github.chandu4221
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ComponentSchema(
-    val name: String,
+data class ComponentCatalog(
+    val composeMultiplatformVersion: String = "1.7.3",
+    val material3Version: String = "1.4.0",
+    val totalCount: Int,
+    val components: List<ComponentDefinition>
+)
+
+@Serializable
+data class ComponentDefinition(
+    val id: String,
+    val displayName: String,
     val packageName: String,
     val category: String,
-    val overloads: List<OverloadSchema>
+    val tier: String = "STANDARD",
+    val isExperimental: Boolean = false,
+    val experimentalAnnotations: List<String> = emptyList(),
+    val isDeprecated: Boolean = false,
+    val deprecation: String? = null,
+    val receiverScope: String? = null,
+    val parameters: List<ComponentParameter> = emptyList(),
+    val callbacks: List<ComponentCallback> = emptyList(),
+    val slots: List<ComponentSlot> = emptyList()
 )
 
 @Serializable
-data class OverloadSchema(
-    val isExperimental: Boolean,
-    val isDeprecated: Boolean,
-    val parameters: List<ParameterSchema>
-)
-
-@Serializable
-data class ParameterSchema(
+data class ComponentParameter(
     val name: String,
     val type: String,
-    val isOptional: Boolean,
-    val defaultValue: String?,
-    val isSlot: Boolean,
-    val slotScope: String? = null,
-    val isDslSlot: Boolean = false,
-    val dslScope: String? = null
+    val rawKotlinType: String? = null,
+    val isNullable: Boolean = false,
+    val hasDefault: Boolean = true
+)
+
+@Serializable
+data class ComponentCallback(
+    val name: String,
+    val signature: String? = null,
+    val hasDefault: Boolean = false
+)
+
+@Serializable
+data class ComponentSlot(
+    val name: String,
+    val receiverScope: String? = null,
+    val cardinality: String = "SINGLE",
+    val takesParameter: Boolean = false,
+    val parameterName: String? = null,
+    val parameterType: String? = null,
+    val hasDefault: Boolean = false,
+    val isComposable: Boolean = true
 )
