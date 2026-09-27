@@ -65,8 +65,8 @@ fun inferParameterType(name: String, rawType: String): String {
         clean == "Shape" -> "SHAPE"
         clean == "Modifier" -> "MODIFIER"
         clean == "PaddingValues" -> "PADDING_VALUES"
-        clean == "Alignment" || clean.endsWith(".Alignment") || clean.endsWith("Alignment") -> "ALIGNMENT"
-        clean == "Arrangement" || clean.endsWith(".Arrangement") || clean.endsWith("Arrangement") -> "ARRANGEMENT"
+        clean.contains("Alignment") -> "ALIGNMENT"
+        clean.contains("Arrangement") -> "ARRANGEMENT"
         clean.contains("Colors") || clean.contains("Elevation") || clean.contains("Border") -> "STYLING"
         clean.contains("TextStyle") -> "TEXT_STYLE"
         clean.contains("InteractionSource") -> "INTERACTION"
@@ -88,7 +88,8 @@ fun inferSlotCardinality(slotName: String, slotScope: String?): String {
             "title", "label", "icon", "leadingIcon", "trailingIcon",
             "topBar", "bottomBar", "floatingActionButton", "snackbarHost",
             "badge", "thumb", "track", "handle", "confirmButton", "dismissButton",
-            "navigationIcon", "header", "footer", "placeholder", "supportingText"
+            "navigationIcon", "header", "footer", "placeholder", "supportingText",
+            "indicator"
         ) -> "SINGLE"
 
         // Multi-child container scopes
@@ -99,27 +100,27 @@ fun inferSlotCardinality(slotName: String, slotScope: String?): String {
     }
 }
 
-fun main() {
-    val factory = createPsiFactory()
-    val sourceDir = File("build/extracted-sources")
-
-    val catalog = parseCatalog(sourceDir, factory)
-
-    val outputFile = File("compose-catalog.json")
-    outputFile.writeText(json.encodeToString(catalog))
-
-    println("Extracted ${catalog.totalCount} components to ${outputFile.absolutePath}")
-}
-
 @OptIn(CompilerConfiguration.Internals::class, CoreEnvironmentDeprecation::class)
-fun createPsiFactory(): KtPsiFactory {
+fun main() {
     val disposable = Disposer.newDisposable()
-    val env = KotlinCoreEnvironment.createForProduction(
-        disposable,
-        CompilerConfiguration.create(),
-        EnvironmentConfigFiles.JVM_CONFIG_FILES
-    )
-    return KtPsiFactory(env.project)
+    try {
+        val env = KotlinCoreEnvironment.createForProduction(
+            disposable,
+            CompilerConfiguration.create(),
+            EnvironmentConfigFiles.JVM_CONFIG_FILES
+        )
+        val factory = KtPsiFactory(env.project)
+        val sourceDir = File("build/extracted-sources")
+
+        val catalog = parseCatalog(sourceDir, factory)
+
+        val outputFile = File("compose-catalog.json")
+        outputFile.writeText(json.encodeToString(catalog))
+
+        println("Extracted ${catalog.totalCount} components to ${outputFile.absolutePath}")
+    } finally {
+        Disposer.dispose(disposable)
+    }
 }
 
 fun parseCatalog(sourceDir: File, factory: KtPsiFactory): ComponentCatalog {
