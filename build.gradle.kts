@@ -22,6 +22,8 @@ dependencies {
     composeSources("androidx.compose.material3:material3:1.4.0:sources")
     composeSources("androidx.compose.foundation:foundation:1.8.1:sources")
     composeSources("androidx.compose.foundation:foundation-layout:1.8.1:sources")
+    composeSources("androidx.compose.ui:ui:1.8.1:sources")
+    composeSources("androidx.compose.animation:animation:1.8.1:sources")
 
     testImplementation(kotlin("test"))
 }

@@ -18,7 +18,11 @@ private val json = Json {
     encodeDefaults = true
 }
 
-private val EXCLUDED_COMPONENTS = setOf("MaterialTheme", "ProvideTextStyle")
+private val EXCLUDED_COMPONENTS = setOf(
+    "MaterialTheme", "ProvideTextStyle",
+    "Path", "Group", "RenderVectorGroup",
+    "LookaheadScope", "SharedTransitionScope", "InterceptPlatformTextInput"
+)
 private val SLOT_REGEX = Regex("""->\s*Unit[\s\)?]*$""")
 private val SCOPE_RECEIVER_REGEX = Regex("""([A-Za-z0-9_]+Scope)\.\(""")
 private val DSL_SCOPE_REGEX = Regex("""^(Lazy[A-Za-z0-9_]*Scope|AppBar[A-Za-z0-9_]*Scope)\.\(\)\s*->\s*Unit$""")
@@ -113,11 +117,14 @@ fun main() {
         val sourceDir = File("build/extracted-sources")
 
         val catalog = parseCatalog(sourceDir, factory)
-
         val outputFile = File("compose-catalog.json")
         outputFile.writeText(json.encodeToString(catalog))
-
         println("Extracted ${catalog.totalCount} components to ${outputFile.absolutePath}")
+
+        val modifierCatalog = parseModifiers(sourceDir, factory)
+        val modifierOutputFile = File("compose-modifiers.json")
+        modifierOutputFile.writeText(json.encodeToString(modifierCatalog))
+        println("Extracted ${modifierCatalog.totalCount} modifiers to ${modifierOutputFile.absolutePath}")
     } finally {
         Disposer.dispose(disposable)
     }
@@ -238,6 +245,7 @@ fun parseCatalog(sourceDir: File, factory: KtPsiFactory): ComponentCatalog {
             category = determineCategory(name, pkg),
             tier = "STANDARD",
             isExperimental = isExperimental,
+            receiverScope = bestFn.receiverTypeReference?.text,
             parameters = parameters,
             callbacks = callbacks,
             slots = slots

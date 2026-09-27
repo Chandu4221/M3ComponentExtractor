@@ -41,10 +41,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add compose-catalog.json
+          git add compose-catalog.json compose-modifiers.json
           if git diff --staged --quiet; then
-            echo "No changes detected in extracted components."
+            echo "No changes detected in extracted components or modifiers."
           else
-            git commit -m "chore(schema): update compose components JSON [skip ci]"
+            git commit -m "chore(schema): update compose catalog and modifiers JSON [skip ci]"
             git push
           fi

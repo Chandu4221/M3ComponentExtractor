@@ -54,3 +54,29 @@ data class ComponentSlot(
     val hasDefault: Boolean = false,
     val isComposable: Boolean = true
 )
+
+@Serializable
+data class ModifierCatalog(
+    val composeVersion: String = "1.8.1",
+    val totalCount: Int,
+    val categories: List<String> = emptyList(),
+    val modifiers: List<ModifierDefinition>
+)
+
+@Serializable
+data class ModifierDefinition(
+    val id: String,
+    val name: String,
+    val packageName: String,
+    val category: String,
+    val receiverScope: String? = null,
+    val isUniversal: Boolean = true,
+    val isExperimental: Boolean = false,
+    val parameters: List<ComponentParameter> = emptyList(),
+    val overloads: List<ModifierOverload> = emptyList()
+)
+
+@Serializable
+data class ModifierOverload(
+    val parameters: List<ComponentParameter> = emptyList()
+)

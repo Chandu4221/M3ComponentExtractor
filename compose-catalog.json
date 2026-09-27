@@ -1,7 +1,7 @@
 {
     "composeMultiplatformVersion": "1.7.3",
     "material3Version": "1.4.0",
-    "totalCount": 135,
+    "totalCount": 143,
     "components": [
         {
             "id": "AlertDialog",
@@ -121,6 +121,123 @@
                     "parameterName": null,
                     "parameterType": null,
                     "hasDefault": true,
+                    "isComposable": true
+                }
+            ]
+        },
+        {
+            "id": "AnimatedContent",
+            "displayName": "AnimatedContent",
+            "packageName": "androidx.compose.animation",
+            "category": "DISPLAY",
+            "tier": "STANDARD",
+            "isExperimental": false,
+            "experimentalAnnotations": [],
+            "isDeprecated": false,
+            "deprecation": null,
+            "receiverScope": null,
+            "parameters": [
+                {
+                    "name": "targetState",
+                    "type": "CUSTOM",
+                    "rawKotlinType": "S",
+                    "isNullable": false,
+                    "hasDefault": false
+                },
+                {
+                    "name": "transitionSpec",
+                    "type": "CUSTOM",
+                    "rawKotlinType": "AnimatedContentTransitionScope<S>.() -> ContentTransform",
+                    "isNullable": false,
+                    "hasDefault": true
+                },
+                {
+                    "name": "contentAlignment",
+                    "type": "ALIGNMENT",
+                    "rawKotlinType": "Alignment",
+                    "isNullable": false,
+                    "hasDefault": true
+                },
+                {
+                    "name": "label",
+                    "type": "STRING",
+                    "rawKotlinType": "String",
+                    "isNullable": false,
+                    "hasDefault": true
+                },
+                {
+                    "name": "contentKey",
+                    "type": "CUSTOM",
+                    "rawKotlinType": "(targetState: S) -> Any?",
+                    "isNullable": true,
+                    "hasDefault": true
+                }
+            ],
+            "callbacks": [],
+            "slots": [
+                {
+                    "name": "content",
+                    "receiverScope": "AnimatedContentScope",
+                    "cardinality": "MULTIPLE",
+                    "takesParameter": false,
+                    "parameterName": null,
+                    "parameterType": null,
+                    "hasDefault": false,
+                    "isComposable": true
+                }
+            ]
+        },
+        {
+            "id": "AnimatedVisibility",
+            "displayName": "AnimatedVisibility",
+            "packageName": "androidx.compose.animation",
+            "category": "DISPLAY",
+            "tier": "STANDARD",
+            "isExperimental": false,
+            "experimentalAnnotations": [],
+            "isDeprecated": false,
+            "deprecation": null,
+            "receiverScope": null,
+            "parameters": [
+                {
+                    "name": "visible",
+                    "type": "BOOLEAN",
+                    "rawKotlinType": "Boolean",
+                    "isNullable": false,
+                    "hasDefault": false
+                },
+                {
+                    "name": "enter",
+                    "type": "CUSTOM",
+                    "rawKotlinType": "EnterTransition",
+                    "isNullable": false,
+                    "hasDefault": true
+                },
+                {
+                    "name": "exit",
+                    "type": "CUSTOM",
+                    "rawKotlinType": "ExitTransition",
+                    "isNullable": false,
+                    "hasDefault": true
+                },
+                {
+                    "name": "label",
+                    "type": "STRING",
+                    "rawKotlinType": "String",
+                    "isNullable": false,
+                    "hasDefault": true
+                }
+            ],
+            "callbacks": [],
+            "slots": [
+                {
+                    "name": "content",
+                    "receiverScope": "AnimatedVisibilityScope",
+                    "cardinality": "MULTIPLE",
+                    "takesParameter": false,
+                    "parameterName": null,
+                    "parameterType": null,
+                    "hasDefault": false,
                     "isComposable": true
                 }
             ]
@@ -1524,6 +1641,54 @@
             ]
         },
         {
+            "id": "Crossfade",
+            "displayName": "Crossfade",
+            "packageName": "androidx.compose.animation",
+            "category": "DISPLAY",
+            "tier": "STANDARD",
+            "isExperimental": false,
+            "experimentalAnnotations": [],
+            "isDeprecated": false,
+            "deprecation": null,
+            "receiverScope": null,
+            "parameters": [
+                {
+                    "name": "targetState",
+                    "type": "CUSTOM",
+                    "rawKotlinType": "T",
+                    "isNullable": false,
+                    "hasDefault": false
+                },
+                {
+                    "name": "animationSpec",
+                    "type": "CUSTOM",
+                    "rawKotlinType": "FiniteAnimationSpec<Float>",
+                    "isNullable": false,
+                    "hasDefault": true
+                },
+                {
+                    "name": "label",
+                    "type": "STRING",
+                    "rawKotlinType": "String",
+                    "isNullable": false,
+                    "hasDefault": true
+                }
+            ],
+            "callbacks": [],
+            "slots": [
+                {
+                    "name": "content",
+                    "receiverScope": null,
+                    "cardinality": "MULTIPLE",
+                    "takesParameter": false,
+                    "parameterName": null,
+                    "parameterType": null,
+                    "hasDefault": false,
+                    "isComposable": true
+                }
+            ]
+        },
+        {
             "id": "DatePicker",
             "displayName": "DatePicker",
             "packageName": "androidx.compose.material3",
@@ -1744,6 +1909,46 @@
                     "parameterName": null,
                     "parameterType": null,
                     "hasDefault": true,
+                    "isComposable": true
+                }
+            ]
+        },
+        {
+            "id": "Dialog",
+            "displayName": "Dialog",
+            "packageName": "androidx.compose.ui.window",
+            "category": "SURFACE",
+            "tier": "STANDARD",
+            "isExperimental": false,
+            "experimentalAnnotations": [],
+            "isDeprecated": false,
+            "deprecation": null,
+            "receiverScope": null,
+            "parameters": [
+                {
+                    "name": "properties",
+                    "type": "CUSTOM",
+                    "rawKotlinType": "DialogProperties",
+                    "isNullable": false,
+                    "hasDefault": true
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "onDismissRequest",
+                    "signature": "() -> Unit",
+                    "hasDefault": false
+                }
+            ],
+            "slots": [
+                {
+                    "name": "content",
+                    "receiverScope": null,
+                    "cardinality": "MULTIPLE",
+                    "takesParameter": false,
+                    "parameterName": null,
+                    "parameterType": null,
+                    "hasDefault": false,
                     "isComposable": true
                 }
             ]
@@ -4433,6 +4638,40 @@
             ]
         },
         {
+            "id": "Layout",
+            "displayName": "Layout",
+            "packageName": "androidx.compose.ui.layout",
+            "category": "DISPLAY",
+            "tier": "STANDARD",
+            "isExperimental": false,
+            "experimentalAnnotations": [],
+            "isDeprecated": false,
+            "deprecation": null,
+            "receiverScope": null,
+            "parameters": [
+                {
+                    "name": "measurePolicy",
+                    "type": "CUSTOM",
+                    "rawKotlinType": "MeasurePolicy",
+                    "isNullable": false,
+                    "hasDefault": false
+                }
+            ],
+            "callbacks": [],
+            "slots": [
+                {
+                    "name": "content",
+                    "receiverScope": null,
+                    "cardinality": "MULTIPLE",
+                    "takesParameter": false,
+                    "parameterName": null,
+                    "parameterType": null,
+                    "hasDefault": false,
+                    "isComposable": true
+                }
+            ]
+        },
+        {
             "id": "LazyColumn",
             "displayName": "LazyColumn",
             "packageName": "androidx.compose.foundation.lazy",
@@ -5787,7 +6026,7 @@
             "experimentalAnnotations": [],
             "isDeprecated": false,
             "deprecation": null,
-            "receiverScope": null,
+            "receiverScope": "RowScope",
             "parameters": [
                 {
                     "name": "selected",
@@ -6872,7 +7111,7 @@
             "experimentalAnnotations": [],
             "isDeprecated": false,
             "deprecation": null,
-            "receiverScope": null,
+            "receiverScope": "TooltipScope",
             "parameters": [
                 {
                     "name": "caretShape",
@@ -6925,6 +7164,60 @@
                 }
             ],
             "callbacks": [],
+            "slots": [
+                {
+                    "name": "content",
+                    "receiverScope": null,
+                    "cardinality": "MULTIPLE",
+                    "takesParameter": false,
+                    "parameterName": null,
+                    "parameterType": null,
+                    "hasDefault": false,
+                    "isComposable": true
+                }
+            ]
+        },
+        {
+            "id": "Popup",
+            "displayName": "Popup",
+            "packageName": "androidx.compose.ui.window",
+            "category": "SURFACE",
+            "tier": "STANDARD",
+            "isExperimental": false,
+            "experimentalAnnotations": [],
+            "isDeprecated": false,
+            "deprecation": null,
+            "receiverScope": null,
+            "parameters": [
+                {
+                    "name": "alignment",
+                    "type": "ALIGNMENT",
+                    "rawKotlinType": "Alignment",
+                    "isNullable": false,
+                    "hasDefault": true
+                },
+                {
+                    "name": "offset",
+                    "type": "CUSTOM",
+                    "rawKotlinType": "IntOffset",
+                    "isNullable": false,
+                    "hasDefault": true
+                },
+                {
+                    "name": "properties",
+                    "type": "CUSTOM",
+                    "rawKotlinType": "PopupProperties",
+                    "isNullable": false,
+                    "hasDefault": true
+                }
+            ],
+            "callbacks": [
+                {
+                    "name": "onDismissRequest",
+                    "signature": "(() -> Unit)?",
+                    "hasDefault": true
+                }
+            ],
             "slots": [
                 {
                     "name": "content",
@@ -7281,7 +7574,7 @@
             "experimentalAnnotations": [],
             "isDeprecated": false,
             "deprecation": null,
-            "receiverScope": null,
+            "receiverScope": "TooltipScope",
             "parameters": [
                 {
                     "name": "caretShape",
@@ -7937,7 +8230,7 @@
             "experimentalAnnotations": [],
             "isDeprecated": false,
             "deprecation": null,
-            "receiverScope": null,
+            "receiverScope": "MultiChoiceSegmentedButtonRowScope",
             "parameters": [
                 {
                     "name": "checked",
@@ -8036,6 +8329,32 @@
                 {
                     "name": "content",
                     "receiverScope": null,
+                    "cardinality": "MULTIPLE",
+                    "takesParameter": false,
+                    "parameterName": null,
+                    "parameterType": null,
+                    "hasDefault": false,
+                    "isComposable": true
+                }
+            ]
+        },
+        {
+            "id": "SharedTransitionLayout",
+            "displayName": "SharedTransitionLayout",
+            "packageName": "androidx.compose.animation",
+            "category": "DISPLAY",
+            "tier": "STANDARD",
+            "isExperimental": true,
+            "experimentalAnnotations": [],
+            "isDeprecated": false,
+            "deprecation": null,
+            "receiverScope": null,
+            "parameters": [],
+            "callbacks": [],
+            "slots": [
+                {
+                    "name": "content",
+                    "receiverScope": "SharedTransitionScope",
                     "cardinality": "MULTIPLE",
                     "takesParameter": false,
                     "parameterName": null,
@@ -8484,6 +8803,36 @@
             "deprecation": null,
             "receiverScope": null,
             "parameters": [],
+            "callbacks": [],
+            "slots": []
+        },
+        {
+            "id": "SubcomposeLayout",
+            "displayName": "SubcomposeLayout",
+            "packageName": "androidx.compose.ui.layout",
+            "category": "DISPLAY",
+            "tier": "STANDARD",
+            "isExperimental": false,
+            "experimentalAnnotations": [],
+            "isDeprecated": false,
+            "deprecation": null,
+            "receiverScope": null,
+            "parameters": [
+                {
+                    "name": "state",
+                    "type": "CUSTOM",
+                    "rawKotlinType": "SubcomposeLayoutState",
+                    "isNullable": false,
+                    "hasDefault": false
+                },
+                {
+                    "name": "measurePolicy",
+                    "type": "CUSTOM",
+                    "rawKotlinType": "SubcomposeMeasureScope.(Constraints) -> MeasureResult",
+                    "isNullable": false,
+                    "hasDefault": false
+                }
+            ],
             "callbacks": [],
             "slots": []
         },
